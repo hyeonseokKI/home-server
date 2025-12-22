@@ -13,5 +13,9 @@ COPY docker/nginx/nginx.conf /etc/nginx/conf.d/default.conf
 # 80 포트 노출 (컨테이너 내부)
 EXPOSE 80
 
+# 헬스체크 (Blue/Green 배포)
+HEALTHCHECK --interval=10s --timeout=3s --retries=3 \
+  CMD wget -qO- http://localhost/health || exit 1
+
 # nginx 실행
 CMD ["nginx", "-g", "daemon off;"]
