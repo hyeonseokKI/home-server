@@ -36,11 +36,11 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="flex h-10 w-10 items-center justify-center rounded-full 
-                          text-gray-300 
-                         hover:bg-gray-600 hover:text-white 
-                         transition"
-            >
+                  className="flex h-10 w-10 items-center justify-center rounded-full 
+                        bg-gray-300 text-gray-300 
+                        hover:bg-gray-600 hover:text-white 
+                        transition"
+                >
               <img
                 src="/icon/github.svg"
                 alt="GitHub"

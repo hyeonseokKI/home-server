@@ -17,10 +17,10 @@ export default function Nav() {
           <Link href="/about" className="hover:text-blue-400">
             About
           </Link>
-          <Link href="/Project" className="hover:text-blue-400">
+          <Link href="/project" className="hover:text-blue-400">
             Project
           </Link>
-          <Link href="/login" className="hover:text-blue-400">
+          <Link href="/board" className="hover:text-blue-400">
             Board
           </Link>
         </nav>
