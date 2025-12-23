@@ -1,3 +1,24 @@
+# =========================
+# Build stage Next.js 
+# =========================
+FROM node:20-alpine AS build
+
+WORKDIR /app
+
+# 의존성 먼저 복사 (캐시 최적화)
+COPY package.json package-lock.json ./
+RUN npm ci
+
+# 소스 전체 복사
+COPY . .
+
+# Next.js SSG build (out/ 생성)
+RUN npm run build
+
+# =========================
+# Runtime stage nginx
+# =========================
+
 # 가볍고 표준적인 nginx 이미지
 FROM nginx:alpine
 
@@ -7,8 +28,8 @@ RUN apk add --no-cache wget
 # nginx 기본 설정 제거 (정적 서빙만 필요)
 RUN rm /etc/nginx/conf.d/default.conf
 
-# 정적 파일을 nginx 루트로 복사
-COPY site/ /usr/share/nginx/html/
+#  Next.js SSG 결과물 복사
+COPY --from=build /app/out /usr/share/nginx/html
 
 # 커스텀 nginx 설정 추가
 COPY docker/nginx/nginx.conf /etc/nginx/conf.d/default.conf
@@ -22,7 +43,7 @@ EXPOSE 80
 # - timeout: 응답 제한
 # - retries: 실패 허용 횟수
 HEALTHCHECK --start-period=20s --interval=10s --timeout=3s --retries=3 \
-  CMD wget -qO- http://localhost/health || exit 1
+  CMD wget -qO- http://localhost/index.html || exit 1
 
 # nginx 실행
 CMD ["nginx", "-g", "daemon off;"]
