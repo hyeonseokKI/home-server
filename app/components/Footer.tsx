@@ -2,9 +2,9 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="mt-24 border-t border-gray-700 text-gray-400">
+    <footer className="border-t border-gray-700 text-gray-400">
       {/* 상단 정보 영역 */}
-      <div className="w-full px-8 py-12">
+      <div className="w-full px-8 py-3">
         <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center ">
 
           
@@ -29,14 +29,14 @@ export default function Footer() {
           </div>
 
           {/* 2열: GitHub 아이콘 (가운데 정렬) */}
-          <div className="flex items-center justify-start  p-4">
+          <div className="flex items-center justify-start  p-2">
 
             <a
               href="https://github.com/hyeonseokKI"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-                  className="flex h-10 w-10 items-center justify-center rounded-full 
+                  className="flex h-8 w-8 items-center justify-center rounded-full 
                         bg-gray-300 text-gray-300 
                         hover:bg-gray-600 hover:text-white 
                         transition"
