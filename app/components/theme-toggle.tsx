@@ -15,7 +15,7 @@ import { Sun, Moon, Monitor, Dot } from 'lucide-react';
 
 const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
  
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => { setMounted(true) }, []);
@@ -35,7 +35,7 @@ const ThemeSwitch = () => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
 <Button variant="ghost" size="icon">
-  {theme === 'dark' ? <Moon /> : <Sun />}
+  {resolvedTheme === 'dark' ? <Moon /> : <Sun />}
   <span className="sr-only">Toggle theme</span>
 </Button>
       </DropdownMenuTrigger>
