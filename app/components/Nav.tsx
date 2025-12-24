@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeToggle from "./theme-toggle";
 
 export default function Nav() {
   return (
@@ -23,6 +24,9 @@ export default function Nav() {
           <Link href="/board" className="hover:text-blue-400">
             Board
           </Link>
+
+          {/* Theme toggle UI */}
+          <ThemeToggle />
         </nav>
       </div>
     </header>
