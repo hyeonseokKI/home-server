@@ -176,3 +176,27 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+/* ============================= */
+/* DEBUG OUTLINE (TAILWIND SAFE) */
+/* ============================= */
+@layer utilities {
+  html.ui-debug-outline * {
+    outline: 2px solid red !important;
+    outline-offset: -2px !important;
+  }
+
+  html.ui-debug-outline header,
+  html.ui-debug-outline nav {
+    outline-color: cyan !important;
+  }
+
+  html.ui-debug-outline main {
+    outline-color: lime !important;
+  }
+
+  html.ui-debug-outline footer {
+    outline-color: yellow !important;
+  }
+}

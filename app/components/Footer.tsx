@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="mt-24 border-t border-gray-700 text-gray-400">
       {/* 상단 정보 영역 */}
       <div className="w-full px-8 py-12">
-        <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center border border-red-500">
+        <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center ">
 
           
           {/* 1열: 텍스트 정보 */}
@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
 
           {/* 2열: GitHub 아이콘 (가운데 정렬) */}
-          <div className="flex items-center justify-start border border-green-500 p-4">
+          <div className="flex items-center justify-start  p-4">
 
             <a
               href="https://github.com/hyeonseokKI"

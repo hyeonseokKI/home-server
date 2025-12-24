@@ -5,6 +5,8 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import { ThemeProvider } from './components/theme-provider';
 import DarkThemeHandler from "./components/theme-handler";
+import { DebugProvider } from "./components/debug-provider";
+import DebugFloatingButton from "./components/DebugFloatingButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,11 +33,14 @@ export default function RootLayout({
       <head><DarkThemeHandler /></head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-screen flex-col `}>
         <ThemeProvider>
-        <Nav />
+          <DebugProvider>
+          <Nav />
         {/* <ThemeProvider>{children}</ThemeProvider> */}
         <main className="flex-1 px-8 py-8">{children}</main>
 
-        <Footer />
+          <Footer />
+            <DebugFloatingButton />
+          </DebugProvider>
         </ThemeProvider>
       </body>
     </html>
