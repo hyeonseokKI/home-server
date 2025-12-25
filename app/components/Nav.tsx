@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import ThemeToggle from "./theme-toggle";
+import { siteConfig } from "@/config/site";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -13,12 +14,12 @@ export default function Nav() {
 
   return (
     <>
-      <header className="h-14 border-b border-gray-700 relative z-50">
+      <header className="h-14 relative z-50">
         <div className="w-full h-full px-6 flex items-center justify-between">
           
           {/* Left */}
           <Link href="/" className="font-bold text-lg">
-            KHS&apos;s Home
+            {siteConfig.name}
           </Link>
 
           {/* Right Area */}

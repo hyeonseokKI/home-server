@@ -11,7 +11,6 @@ export default function HomePage() {
         className="
           hidden lg:flex
           flex-[1]
-          px-4
         "
       >
         <ImageSlider />
@@ -35,6 +34,7 @@ export default function HomePage() {
           </p>
         </div>
       </section>
+        
     </div>
   );
 }

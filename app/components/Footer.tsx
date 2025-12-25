@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { siteConfig } from "@/config/site";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-700 text-gray-400">
+    <footer className=" text-gray-400">
       {/* 상단 정보 영역 */}
       <div className="w-full px-8 py-3">
         <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center ">
@@ -12,14 +13,14 @@ export default function Footer() {
           <div className="text-sm">
             {/* 1행: 서비스명 */}
             <p className="font-semibold text-gray-200">
-              KHS&apos;s Home
+              {siteConfig.name}
             </p>
 
             {/* 2행: Writer | Email */}
             <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
-              <span>Writer : 김현석</span>
+              <span>Writer :  {siteConfig.author} </span>
               <span className="text-gray-600">|</span>
-              <span>Email : gustjr5166@naver.com</span>
+              <span>Email : {siteConfig.email}</span>
             </div>
 
             {/* 3행: Copyright */}
