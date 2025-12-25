@@ -1,6 +1,7 @@
 import Link from "next/link";
 
-import ImageSlider from "@/components/ImageSlider";
+import ImageSlider from "@/app/components/ImageSlider";
+import Intro from "@/app/components/Intro";
 
 
 export default function HomePage() {
@@ -23,16 +24,10 @@ export default function HomePage() {
           flex-[2]
           w-full
           items-center
-          justify-center
           px-8
         "
       >
-        <div className="max-w-md">
-          <h1 className="text-3xl font-bold mb-4">Welcome</h1>
-          <p className="text-gray-500">
-            이 영역은 소개, 설명, 버튼, 텍스트 등을 자유롭게 구성할 수 있습니다.
-          </p>
-        </div>
+      <Intro />
       </section>
         
     </div>
