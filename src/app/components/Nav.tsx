@@ -19,7 +19,7 @@ export default function Nav() {
   return (
     <>
       <header className="h-14 relative z-50 w-full">
-        <div className="w-full h-full px-4 md:px-6 flex items-center justify-between">
+        <div className="h-full mx-4 md:mx-8 lg:mx-16 px-4 md:px-6 flex items-center justify-between">
           
           {/* Left */}
           <Link href="/" className="font-bold text-lg">
