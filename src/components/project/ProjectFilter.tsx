@@ -27,7 +27,7 @@ export default function ProjectFilter({
 
   return (
     <div>
-      <div className="mb-6 flex flex-wrap gap-2">
+      <div className="mb-6 flex flex-wrap gap-2 justify-center">
         <Button
           variant={selectedTech === null ? "default" : "outline"}
           size="sm"

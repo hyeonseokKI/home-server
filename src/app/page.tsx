@@ -9,7 +9,8 @@ export default function HomePage() {
   const images = getProjectImages();
 
   return (
-    <div className="flex w-full">
+    <div className="flex w-full min-h-full mx-4 md:mx-8 lg:mx-16">
+
       {/* 왼쪽 */}
       <section
         className="
@@ -26,9 +27,11 @@ export default function HomePage() {
         className="
           flex
           flex-1
+          w-full
           min-w-0
           items-center
-          px-8
+          justify-center
+          px-4 md:px-8
         "
       >
       <Intro />

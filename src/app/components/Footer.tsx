@@ -7,9 +7,9 @@ import LinkedInIcon from "@/components/icons/LinkedInIcon";
 
 export default function Footer() {
   return (
-    <footer className=" text-gray-400">
+    <footer className="w-full text-gray-400">
       {/* 상단 정보 영역 */}
-      <div className="w-full px-8 py-3">
+      <div className="w-full px-4 md:px-8 py-3">
         <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center ">
 
           
@@ -34,25 +34,9 @@ export default function Footer() {
           </div>
 
           {/* 2열: GitHub 아이콘 (가운데 정렬) */}
-          <div className="flex items-center justify-start  p-2">
+          <div className="flex items-center justify-start gap-x-4 p-2">
 
-            {/* <a
-              href="https://github.com/hyeonseokKI"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-                  className="flex h-8 w-8 items-center justify-center rounded-full 
-                        bg-gray-300 text-gray-300 
-                        hover:bg-gray-600 hover:text-white 
-                        transition"
-                >
-              <img
-                src="/icon/github.svg"
-                alt="GitHub"
-                className="h-5 w-5"
-              />
-            </a> */}
-              <Link href='https://www.linkedin.com/' target='_blank'>
+              <Link href='https://github.com/hyeonseokKI' target='_blank'>
             <GithubIcon
               className='fill-foreground transition hover:fill-pink-600'
               height={30}
@@ -60,7 +44,7 @@ export default function Footer() {
             />
             </Link>
 
-          <Link href='https://www.linkedin.com/' target='_blank'>
+          <Link href='https://www.linkedin.com/in/%ED%98%84%EC%84%9D-%EA%B9%80-632414377/' target='_blank'>
             <LinkedInIcon
               className='fill-foreground transition hover:fill-pink-600'
               height={30}
