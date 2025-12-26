@@ -103,9 +103,10 @@ function NavLinks({ onClick }: { onClick?: () => void }) {
   return (
     <>
       <Link href="/" onClick={onClick}>Home</Link>
-      <Link href="/about" onClick={onClick}>About</Link>
-      <Link href="/project" onClick={onClick}>Project</Link>
-      <Link href="/board" onClick={onClick}>Board</Link>
+      <Link href="/projects" onClick={onClick}>Project</Link>
+      <Link href="/portfolio" onClick={onClick}>Portfolio</Link>
+      <span className="hidden md:inline text-gray-400">|</span>
+      <Link href="/blog" onClick={onClick}>Blog</Link>
     </>
   );
 }

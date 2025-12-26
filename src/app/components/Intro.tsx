@@ -81,10 +81,10 @@ export default function Intro() {
         </Link>
 
         <Link
-          href="/bio"
+          href="/portfolio"
           className="px-5 py-2 rounded-md border border-gray-400 text-sm text-gray-300"
         >
-          Bio.
+          Portfolio
         </Link>
       </motion.div>
     </div>
