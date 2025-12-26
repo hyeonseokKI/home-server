@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <head><DarkThemeHandler /></head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-screen flex-col px-8 `}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-screen flex-col px-30 `}>
         <ThemeProvider>
           <DebugProvider>
           <Nav />
