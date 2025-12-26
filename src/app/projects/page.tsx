@@ -1,13 +1,14 @@
-import { getAllProjects } from "@/lib/projects";
-import ProjectGrid from "@/components/project/ProjectGrid";
+import { getAllProjects, getAllTechs } from "@/lib/projects";
+import ProjectFilter from "@/components/project/ProjectFilter";
 
 export default function ProjectsPage() {
   const projects = getAllProjects();
+  const allTechs = getAllTechs();
 
   return (
     <section className="container py-16">
       <h1 className="mb-8 text-3xl font-bold">Projects</h1>
-      <ProjectGrid projects={projects} />
+      <ProjectFilter projects={projects} allTechs={allTechs} />
     </section>
   );
 }

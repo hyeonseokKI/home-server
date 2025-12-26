@@ -72,24 +72,6 @@ export default function Footer() {
 
         </div>
       </div>
-
-      {/* (선택) 하단 링크 영역 — 필요 시 추가 */}
-      {/* 
-      <div className="border-t border-gray-700">
-        <div className="mx-auto max-w-6xl px-8 py-6">
-          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-            <Link href="/terms">이용약관</Link>
-            <Link href="/privacy" className="font-semibold text-gray-200">
-              개인정보 처리 방침
-            </Link>
-          </nav>
-        </div>
-      </div>
-      */}
-
-      <div>
-        © 2024. <span className='font-semibold'>Doh Kim</span> all rights reserved.
-      </div>
     </footer>
   );
 }

@@ -3,19 +3,17 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 
-const images = [
-  "/images/gate_1.jpg",
-  "/images/gate_2.jpg",
-  "/images/gate_3.jpg",
-];
-
 const AUTO_INTERVAL = 3000;
 const RESUME_DELAY = 5000;
 const SWIPE_THRESHOLD = 50;
 
 type SliderMode = "auto" | "manual";
 
-export default function ImageSlider() {
+type ImageSliderProps = {
+  images: string[];
+};
+
+export default function ImageSlider({ images }: ImageSliderProps) {
   const len = images.length;
 
   const extended = useMemo(
@@ -141,6 +139,8 @@ export default function ImageSlider() {
     if (mode === "auto") {
       autoTimer.current = setInterval(() => {
         if (!isAnimating) {
+          setIsAnimating(true);
+          setWithTransition(true);
           setIndex((prev) => prev + 1);
         }
       }, AUTO_INTERVAL);
@@ -155,7 +155,7 @@ export default function ImageSlider() {
 
   return (
     <div
-      className="relative w-full h-full overflow-hidden select-none cursor-grab active:cursor-grabbing"
+      className="relative w-full aspect-video overflow-hidden select-none cursor-grab active:cursor-grabbing"
       onMouseDown={(e) => onStart(e.clientX)}
       onMouseUp={(e) => onEnd(e.clientX)}
       onTouchStart={(e) => onStart(e.touches[0].clientX)}
@@ -169,14 +169,18 @@ export default function ImageSlider() {
         onTransitionEnd={onTransitionEnd}
       >
         {extended.map((src, i) => (
-          <div key={i} className="relative w-full h-full flex-shrink-0">
-            <Image
-              src={src}
-              alt=""
-              fill
-              draggable={false}
-              className="object-cover pointer-events-none"
-            />
+          <div key={i} className="relative w-full h-full flex-shrink-0 p-8">
+            <div className="relative w-full h-full flex items-center justify-center">
+              <div className="relative w-[100%] h-[100%]">
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  draggable={false}
+                  className="object-contain pointer-events-none"
+                />
+              </div>
+            </div>
           </div>
         ))}
       </div>

@@ -15,6 +15,7 @@ export type ProjectMeta = {
   date?: string;
   thumbnail?: string;
   tech?: string[];
+  url?: string;
 };
 
 /** ✅ Projects 목록용 */
@@ -71,4 +72,18 @@ export function getAllProjectSlugs(): string[] {
     console.error("Error reading project slugs:", error);
     return [];
   }
+}
+
+/** ✅ 모든 프로젝트에서 사용된 tech 목록 추출 */
+export function getAllTechs(): string[] {
+  const projects = getAllProjects();
+  const techSet = new Set<string>();
+  
+  projects.forEach((project) => {
+    if (project.tech) {
+      project.tech.forEach((t) => techSet.add(t));
+    }
+  });
+  
+  return Array.from(techSet).sort();
 }

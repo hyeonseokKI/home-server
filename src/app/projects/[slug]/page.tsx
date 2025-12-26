@@ -5,6 +5,7 @@ import {
   getProjectBySlug,
   getAllProjectSlugs,
 } from "@/lib/projects";
+import { ServiceLink } from "@/components/project/ServiceLink";
 
 type PageProps = {
   params: Promise<{
@@ -51,7 +52,7 @@ export default async function ProjectDetailPage({
   });
 
   return (
-    <article className="container max-w-3xl py-16">
+    <article className="flex flex-col relative w-full max-w-[1060px] mx-auto my-[50px] px-5">
       <header className="mb-10">
         <h1 className="text-3xl font-bold">{meta.title}</h1>
         {meta.description && (
@@ -72,7 +73,7 @@ export default async function ProjectDetailPage({
           )}
           {meta.tech && meta.tech.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {meta.tech.map((t) => (
+              {meta.tech.map((t: string) => (
                 <span
                   key={t}
                   className="rounded bg-muted px-2 py-0.5 text-xs"
@@ -97,6 +98,11 @@ export default async function ProjectDetailPage({
       )}
 
       <div className="prose dark:prose-invert max-w-none">
+        {meta.url && (
+          <div className="mb-6">
+            <ServiceLink url={meta.url} />
+          </div>
+        )}
         {mdxContent}
       </div>
     </article>
