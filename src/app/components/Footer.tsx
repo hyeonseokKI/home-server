@@ -3,6 +3,7 @@ import { siteConfig } from "@/config/site";
 
 import GithubIcon from '@/components/icons/GithubIcon';
 import LinkedInIcon from "@/components/icons/LinkedInIcon";
+import MailIcon from "@/components/icons/MailIcon";
 
 
 export default function Footer() {
@@ -24,7 +25,13 @@ export default function Footer() {
             <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
               <span>Writer :  {siteConfig.author} </span>
               <span className="text-gray-600">|</span>
-              <span>Email : {siteConfig.email}</span>
+              <a 
+                href={`mailto:${siteConfig.email}`}
+                className="hover:text-pink-600 transition-colors"
+              >
+                Email : {siteConfig.email}
+              </a>
+
             </div>
 
             {/* 3행: Copyright */}
@@ -51,6 +58,14 @@ export default function Footer() {
               width={30}
             />
         </Link>
+
+          <Link href={`mailto:${siteConfig.email}`}>
+            <MailIcon
+              className='fill-foreground transition hover:fill-pink-600'
+              height={30}
+              width={30}
+            />
+          </Link>
 
           </div>
 
