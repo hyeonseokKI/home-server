@@ -6,6 +6,8 @@ import {
   getAllProjectSlugs,
 } from "@/lib/projects";
 import { ServiceLink } from "@/components/project/ServiceLink";
+import { siteConfig } from "@/config/site";
+import type { Metadata } from "next";
 
 type PageProps = {
   params: Promise<{
@@ -32,6 +34,25 @@ export async function generateStaticParams() {
     console.error("Error generating static params:", error);
     return [];
   }
+}
+
+/** ✅ 페이지 메타데이터 생성 */
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const resolvedParams = await Promise.resolve(params);
+  const project = getProjectBySlug(resolvedParams.slug);
+
+  if (!project) {
+    return {
+      title: siteConfig.name,
+    };
+  }
+
+  return {
+    title: `${siteConfig.name} | ${project.meta.title}`,
+    description: project.meta.description || siteConfig.description,
+  };
 }
 
 export default async function ProjectDetailPage({
