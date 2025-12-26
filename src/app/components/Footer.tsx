@@ -1,6 +1,10 @@
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
 
+import GithubIcon from '@/components/icons/GithubIcon';
+import LinkedInIcon from "@/components/icons/LinkedInIcon";
+
+
 export default function Footer() {
   return (
     <footer className=" text-gray-400">
@@ -32,7 +36,7 @@ export default function Footer() {
           {/* 2열: GitHub 아이콘 (가운데 정렬) */}
           <div className="flex items-center justify-start  p-2">
 
-            <a
+            {/* <a
               href="https://github.com/hyeonseokKI"
               target="_blank"
               rel="noopener noreferrer"
@@ -47,7 +51,23 @@ export default function Footer() {
                 alt="GitHub"
                 className="h-5 w-5"
               />
-            </a>
+            </a> */}
+              <Link href='https://www.linkedin.com/' target='_blank'>
+            <GithubIcon
+              className='fill-foreground transition hover:fill-pink-600'
+              height={30}
+              width={30}
+            />
+            </Link>
+
+          <Link href='https://www.linkedin.com/' target='_blank'>
+            <LinkedInIcon
+              className='fill-foreground transition hover:fill-pink-600'
+              height={30}
+              width={30}
+            />
+        </Link>
+
           </div>
 
         </div>
@@ -66,6 +86,10 @@ export default function Footer() {
         </div>
       </div>
       */}
+
+      <div>
+        © 2024. <span className='font-semibold'>Doh Kim</span> all rights reserved.
+      </div>
     </footer>
   );
 }

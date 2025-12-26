@@ -1,9 +1,13 @@
+// app\components\Nav.tsx
 "use client";
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import ThemeToggle from "./theme-toggle";
 import { siteConfig } from "@/config/site";
+
+import ScrollProgressBar from "@/components/common/ScrollProgressBar";
+
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -56,6 +60,7 @@ export default function Nav() {
             </button>
           </div>
         </div>
+        <ScrollProgressBar />
       </header>
 
       {/* ===== Mobile Fullscreen Overlay ===== */}
