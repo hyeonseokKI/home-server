@@ -1,48 +1,13 @@
-import Link from "next/link";
+import { getAllProjects } from "@/lib/projects";
+import ProjectGrid from "@/components/project/ProjectGrid";
 
-export default function Intro() {
+export default function ProjectsPage() {
+  const projects = getAllProjects();
+
   return (
-    <div className="flex flex-col items-center justify-center max-w-[900px] mx-auto px-4">
-    
-    프로젝트 페이지입니다.
-    <div>프로젝트 페이지입니다ㅇdddddddddddddddddddddddddㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-    <div>프로젝트 페이지입니다.</div>
-
-
-    </div>
-    
+    <section className="container py-16">
+      <h1 className="mb-8 text-3xl font-bold">Projects</h1>
+      <ProjectGrid projects={projects} />
+    </section>
   );
 }
