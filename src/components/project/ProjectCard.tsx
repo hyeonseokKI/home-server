@@ -15,7 +15,7 @@ function formatMonthRange(startMonth?: string, endMonth?: string): string | null
     return `${formatMonth(startMonth)} - ${formatMonth(endMonth)}`;
   }
   if (startMonth) {
-    return `${formatMonth(startMonth)} - 진행중`;
+    return `${formatMonth(startMonth)} - ing`;
   }
   if (endMonth) {
     return `${formatMonth(endMonth)}`;

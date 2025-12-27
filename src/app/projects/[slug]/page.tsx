@@ -96,7 +96,7 @@ export default async function ProjectDetailPage({
                 return `${formatMonth(startMonth)} - ${formatMonth(endMonth)}`;
               }
               if (startMonth) {
-                return `${formatMonth(startMonth)} - 진행중`;
+                return `${formatMonth(startMonth)} - ing`;
               }
               return null;
             };
