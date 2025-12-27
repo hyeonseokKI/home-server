@@ -18,9 +18,9 @@ export default function HomeContent({ images }: HomeContentProps) {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row w-full min-h-full mx-4 md:mx-8 lg:mx-16">
+    <div className="flex flex-col lg:flex-row w-full mx-4 md:mx-8 lg:mx-16">
 
-      {/* ImageSlider - 모바일에서는 위, 데스크톱에서는 왼쪽 */}
+      {/* ImageSlider - 모바일: 세로, 데스크톱(lg 이상): 좌측 */}
       <section
         className="
           flex
@@ -28,8 +28,8 @@ export default function HomeContent({ images }: HomeContentProps) {
           lg:flex-[2]
           w-full
           lg:min-w-0
-          mb-8 lg:mb-0
-          min-h-[100vh] lg:min-h-0
+          min-h-screen
+          lg:min-h-screen
           items-center
           justify-center
           relative
@@ -37,42 +37,43 @@ export default function HomeContent({ images }: HomeContentProps) {
       >
         <div className="w-full flex-shrink-0 flex flex-col items-center">
           <ImageSlider images={images} />
-          
-          {/* 아래 화살표 - 모든 화면에서 표시, ImageSlider 섹션 바로 아래 */}
-          <button
-            onClick={scrollToIntro}
-            className="mt-6 mb-4 cursor-pointer pointer-events-auto z-10 flex-shrink-0"
-            aria-label="아래로 스크롤"
-          >
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] animate-bounce text-white"
-            >
-              <path d="M12 5v14M19 12l-7 7-7-7" />
-            </svg>
-          </button>
         </div>
+        
+        {/* 아래 화살표 - 화면 최하단에 배치, 모바일에서만 표시, 데스크톱에서는 숨김 */}
+        <button
+          onClick={scrollToIntro}
+          className="lg:hidden absolute bottom-20 left-1/2 -translate-x-1/2 cursor-pointer pointer-events-auto z-10 flex-shrink-0"
+          aria-label="아래로 스크롤"
+        >
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] animate-bounce text-white"
+          >
+            <path d="M12 5v14M19 12l-7 7-7-7" />
+          </svg>
+        </button>
       </section>
 
-      {/* Intro - 모바일에서는 아래, 데스크톱에서는 오른쪽 */}
+      {/* Intro - 모바일: 하단, 데스크톱(lg 이상): 우측 */}
       <section
         ref={introSectionRef}
         className="
           flex
           flex-1
           w-full
-          min-w-0
+          lg:min-w-0
+          min-h-screen
+          lg:min-h-screen
           items-center
           justify-center
           px-4 md:px-8
-          min-h-[100vh] lg:min-h-0
         "
       >
       <Intro />
