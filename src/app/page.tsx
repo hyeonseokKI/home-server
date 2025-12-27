@@ -15,7 +15,7 @@ export default function HomePage() {
       <section
         className="
           hidden lg:flex
-          flex-1
+          flex-[2]
           min-w-0
         "
       >

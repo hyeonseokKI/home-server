@@ -25,6 +25,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
   const [withTransition, setWithTransition] = useState(true);
   const [isAnimating, setIsAnimating] = useState(false);
   const [mode, setMode] = useState<SliderMode>("auto");
+  const [textVisible, setTextVisible] = useState(false);
 
   const startX = useRef<number | null>(null);
   const autoTimer = useRef<NodeJS.Timeout | null>(null);
@@ -131,6 +132,14 @@ export default function ImageSlider({ images }: ImageSliderProps) {
   }, [withTransition]);
 
   /* =========================
+     📝 Text Animation
+  ========================== */
+  useEffect(() => {
+    // 컴포넌트 마운트 시에만 텍스트 애니메이션 1회 재생
+    setTextVisible(true);
+  }, []);
+
+  /* =========================
      ⏱ Auto Slide
   ========================== */
   useEffect(() => {
@@ -183,6 +192,73 @@ export default function ImageSlider({ images }: ImageSliderProps) {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Text Overlay */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-center pointer-events-none">
+        <p 
+          className={`text-white text-xl md:text-2xl mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-all duration-700 ease-out ${
+            textVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 -translate-y-8'
+          }`}
+          style={{ transitionDelay: textVisible ? '0ms' : '0ms' }}
+        >
+          하드웨어와 소프트웨어를 연결하는
+        </p>
+        <p 
+          className={`text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-all duration-700 ease-out ${
+            textVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 -translate-y-8'
+          }`}
+          style={{ transitionDelay: textVisible ? '200ms' : '0ms' }}
+        >
+          <span className="relative inline-block">
+            <span className="relative">
+              김현석
+              <span 
+                className={`absolute bottom-0 left-0 h-3 bg-[#141937] -z-10 transition-all duration-1000 ease-out ${
+                  textVisible ? 'w-full' : 'w-0'
+                }`}
+                style={{ transitionDelay: textVisible ? '400ms' : '0ms' }}
+              ></span>
+            </span>
+            <span>입니다.</span>
+          </span>
+        </p>
+        <div className="text-white text-base md:text-lg mt-6 space-y-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+          <p 
+            className={`transition-all duration-700 ease-out ${
+              textVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 -translate-y-8'
+            }`}
+            style={{ transitionDelay: textVisible ? '400ms' : '0ms' }}
+          >
+            임베디드 개발자를 희망하고 있습니다.
+          </p>
+          <p 
+            className={`transition-all duration-700 ease-out ${
+              textVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 -translate-y-8'
+            }`}
+            style={{ transitionDelay: textVisible ? '600ms' : '0ms' }}
+          >
+            하드웨어를 이해하고 최적화된 코드로 제어하는 것을 좋아합니다.
+          </p>
+          <p 
+            className={`transition-all duration-700 ease-out ${
+              textVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 -translate-y-8'
+            }`}
+            style={{ transitionDelay: textVisible ? '800ms' : '0ms' }}
+          >
+            실제 동작하는 시스템을 만드는 것에 열정을 가지고 있습니다.
+          </p>
+        </div>
       </div>
 
       {/* Dot */}
