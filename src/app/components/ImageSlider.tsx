@@ -99,10 +99,13 @@ export default function ImageSlider({ images }: ImageSliderProps) {
   const onEnd = (x: number) => {
     if (startX.current === null) return;
 
-    const diff = x - startX.current;
+    const diffX = x - startX.current;
 
-    if (diff > SWIPE_THRESHOLD) move(-1, "SWIPE");
-    else if (diff < -SWIPE_THRESHOLD) move(1, "SWIPE");
+    // 수평 스와이프 처리
+    if (Math.abs(diffX) > SWIPE_THRESHOLD) {
+      if (diffX > SWIPE_THRESHOLD) move(-1, "SWIPE");
+      else if (diffX < -SWIPE_THRESHOLD) move(1, "SWIPE");
+    }
 
     startX.current = null;
   };
@@ -160,11 +163,12 @@ export default function ImageSlider({ images }: ImageSliderProps) {
     };
   }, [mode, isAnimating]);
 
+
   const realIndex = (index - 1 + len) % len;
 
   return (
     <div
-      className="relative w-full aspect-video overflow-hidden select-none cursor-grab active:cursor-grabbing"
+      className="relative w-full aspect-video sm:aspect-video overflow-hidden select-none cursor-grab active:cursor-grabbing"
       onMouseDown={(e) => onStart(e.clientX)}
       onMouseUp={(e) => onEnd(e.clientX)}
       onTouchStart={(e) => onStart(e.touches[0].clientX)}
@@ -178,7 +182,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
         onTransitionEnd={onTransitionEnd}
       >
         {extended.map((src, i) => (
-          <div key={i} className="relative w-full h-full flex-shrink-0 p-8">
+          <div key={i} className="relative w-full h-full flex-shrink-0 p-4 sm:p-6 md:p-8">
             <div className="relative w-full h-full flex items-center justify-center">
               <div className="relative w-[100%] h-[100%]">
                 <Image
@@ -195,9 +199,9 @@ export default function ImageSlider({ images }: ImageSliderProps) {
       </div>
 
       {/* Text Overlay */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-center pointer-events-none">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 text-center pointer-events-none w-[90%] sm:w-auto px-4">
         <p 
-          className={`text-white text-xl md:text-2xl mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-all duration-700 ease-out ${
+          className={`text-white text-sm sm:text-base md:text-xl lg:text-2xl mb-2 sm:mb-3 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-all duration-700 ease-out whitespace-nowrap ${
             textVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 -translate-y-8'
@@ -207,7 +211,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
           하드웨어와 소프트웨어를 연결하는
         </p>
         <p 
-          className={`text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-all duration-700 ease-out ${
+          className={`text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-all duration-700 ease-out whitespace-nowrap ${
             textVisible 
               ? 'opacity-100 translate-y-0' 
               : 'opacity-0 -translate-y-8'
@@ -218,7 +222,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
             <span className="relative">
               김현석
               <span 
-                className={`absolute bottom-0 left-0 h-3 bg-[#141937] -z-10 transition-all duration-1000 ease-out ${
+                className={`absolute bottom-0 left-0 h-2 sm:h-3 bg-[#141937] -z-10 transition-all duration-1000 ease-out ${
                   textVisible ? 'w-full' : 'w-0'
                 }`}
                 style={{ transitionDelay: textVisible ? '400ms' : '0ms' }}
@@ -227,9 +231,9 @@ export default function ImageSlider({ images }: ImageSliderProps) {
             <span>입니다.</span>
           </span>
         </p>
-        <div className="text-white text-base md:text-lg mt-6 space-y-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+        <div className="text-white text-xs sm:text-sm md:text-base lg:text-lg mt-4 sm:mt-6 space-y-1 sm:space-y-2 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
           <p 
-            className={`transition-all duration-700 ease-out ${
+            className={`transition-all duration-700 ease-out whitespace-nowrap ${
               textVisible 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 -translate-y-8'
@@ -239,7 +243,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
             임베디드 개발자를 희망하고 있습니다.
           </p>
           <p 
-            className={`transition-all duration-700 ease-out ${
+            className={`transition-all duration-700 ease-out whitespace-nowrap ${
               textVisible 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 -translate-y-8'
@@ -249,7 +253,7 @@ export default function ImageSlider({ images }: ImageSliderProps) {
             하드웨어를 이해하고 최적화된 코드로 제어하는 것을 좋아합니다.
           </p>
           <p 
-            className={`transition-all duration-700 ease-out ${
+            className={`transition-all duration-700 ease-out whitespace-nowrap ${
               textVisible 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 -translate-y-8'
@@ -262,12 +266,12 @@ export default function ImageSlider({ images }: ImageSliderProps) {
       </div>
 
       {/* Dot */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+      <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 sm:gap-2">
         {images.map((_, i) => (
           <button
             key={i}
             onClick={() => goTo(i)}
-            className={`w-3 h-3 rounded-full ${
+            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${
               i === realIndex ? "bg-white" : "bg-white/40"
             }`}
           />
