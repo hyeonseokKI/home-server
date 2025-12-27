@@ -13,7 +13,33 @@ export default function HomeContent({ images }: HomeContentProps) {
 
   const scrollToIntro = () => {
     if (introSectionRef.current) {
-      introSectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      const targetPosition = introSectionRef.current.offsetTop;
+      const startPosition = window.pageYOffset;
+      const distance = targetPosition - startPosition;
+      const duration = 1500; // 1.5초 동안 스크롤
+      let start: number | null = null;
+
+      // easing 함수 (ease-in-out)
+      const easeInOutCubic = (t: number): number => {
+        return t < 0.5
+          ? 4 * t * t * t
+          : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      };
+
+      const animation = (currentTime: number) => {
+        if (start === null) start = currentTime;
+        const timeElapsed = currentTime - start;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const ease = easeInOutCubic(progress);
+
+        window.scrollTo(0, startPosition + distance * ease);
+
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animation);
+        }
+      };
+
+      requestAnimationFrame(animation);
     }
   };
 
@@ -42,7 +68,7 @@ export default function HomeContent({ images }: HomeContentProps) {
         {/* 아래 화살표 - 화면 최하단에 배치, 모바일에서만 표시, 데스크톱에서는 숨김 */}
         <button
           onClick={scrollToIntro}
-          className="lg:hidden absolute bottom-20 left-1/2 -translate-x-1/2 cursor-pointer pointer-events-auto z-10 flex-shrink-0"
+          className="lg:hidden absolute bottom-40 left-1/2 -translate-x-1/2 cursor-pointer pointer-events-auto z-10 flex-shrink-0"
           aria-label="아래로 스크롤"
         >
           <svg
