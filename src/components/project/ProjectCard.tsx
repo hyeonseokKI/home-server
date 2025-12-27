@@ -2,13 +2,38 @@ import Link from "next/link";
 import Image from "next/image";
 import { ProjectMeta } from "@/lib/projects";
 
+function formatMonthRange(startMonth?: string, endMonth?: string): string | null {
+  if (!startMonth && !endMonth) return null;
+  
+  const formatMonth = (monthStr: string): string => {
+    const [year, month] = monthStr.split("-");
+    if (!year || !month) return monthStr;
+    return `${year}년 ${parseInt(month).toString().padStart(2, "0")}월`;
+  };
+
+  if (startMonth && endMonth) {
+    return `${formatMonth(startMonth)} - ${formatMonth(endMonth)}`;
+  }
+  if (startMonth) {
+    return `${formatMonth(startMonth)} - 진행중`;
+  }
+  if (endMonth) {
+    return `${formatMonth(endMonth)}`;
+  }
+  return null;
+}
+
 export default function ProjectCard({
   slug,
   title,
   description,
   thumbnail,
   tech,
+  startMonth,
+  endMonth,
 }: ProjectMeta) {
+  const monthRange = formatMonthRange(startMonth, endMonth);
+
   return (
     <Link
       href={`/projects/${slug}`}
@@ -26,6 +51,11 @@ export default function ProjectCard({
       )}
 
       <h3 className="text-lg font-semibold">{title}</h3>
+      {monthRange && (
+        <p className="mt-1 text-sm text-muted-foreground">
+          {monthRange}
+        </p>
+      )}
       <p className="mt-1 text-sm text-muted-foreground">
         {description}
       </p>

@@ -82,28 +82,61 @@ export default async function ProjectDetailPage({
           </p>
         )}
         
-        <div className="mt-4 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-          {meta.date && (
-            <time dateTime={meta.date}>
-              {new Date(meta.date).toLocaleDateString("ko-KR", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-          )}
-          {meta.tech && meta.tech.length > 0 && (
-            <div className="flex flex-wrap gap-2">
-              {meta.tech.map((t: string) => (
-                <span
-                  key={t}
-                  className="rounded bg-muted px-2 py-0.5 text-xs"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          )}
+        <div className="mt-4 text-sm text-muted-foreground">
+          {(() => {
+            const formatMonth = (monthStr: string): string => {
+              const [year, month] = monthStr.split("-");
+              if (!year || !month) return monthStr;
+              return `${year}년 ${parseInt(month).toString().padStart(2, "0")}월`;
+            };
+
+            const formatMonthRange = (startMonth?: string, endMonth?: string): string | null => {
+              if (!startMonth && !endMonth) return null;
+              if (startMonth && endMonth) {
+                return `${formatMonth(startMonth)} - ${formatMonth(endMonth)}`;
+              }
+              if (startMonth) {
+                return `${formatMonth(startMonth)} - 진행중`;
+              }
+              return null;
+            };
+
+            const monthRange = formatMonthRange(meta.startMonth, meta.endMonth);
+            const formattedDate = meta.date
+              ? new Date(meta.date).toLocaleDateString("ko-KR", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              : null;
+
+            const textParts: string[] = [];
+            if (monthRange) textParts.push(monthRange);
+            if (formattedDate) textParts.push(formattedDate);
+
+            return (
+              <div className="flex flex-wrap items-center gap-2">
+                {textParts.length > 0 && (
+                  <>
+                    <span>{textParts.join(" | ")}</span>
+                    {meta.tech && meta.tech.length > 0 && <span>|</span>}
+                  </>
+                )}
+                {meta.tech && meta.tech.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {meta.tech.map((t: string) => (
+                      <span
+                        key={t}
+                        className="rounded bg-muted px-2 py-0.5 text-xs"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })()}
         </div>
       </header>
 

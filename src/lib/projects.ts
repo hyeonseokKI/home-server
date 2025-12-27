@@ -13,6 +13,8 @@ export type ProjectMeta = {
   title: string;
   description?: string;
   date?: string;
+  startMonth?: string;
+  endMonth?: string;
   thumbnail?: string;
   tech?: string[];
   url?: string;
@@ -22,7 +24,7 @@ export type ProjectMeta = {
 export function getAllProjects(): ProjectMeta[] {
   const files = fs.readdirSync(PROJECTS_PATH);
 
-  return files.map((filename) => {
+  const projects = files.map((filename) => {
     const slug = filename.replace(/\.mdx$/, "").trim();
     const filePath = path.join(PROJECTS_PATH, filename);
     const file = fs.readFileSync(filePath, "utf-8");
@@ -32,6 +34,14 @@ export function getAllProjects(): ProjectMeta[] {
       slug,
       ...(data as Omit<ProjectMeta, "slug">),
     };
+  });
+
+  // date 기준 최신순 정렬
+  return projects.sort((a, b) => {
+    if (!a.date && !b.date) return 0;
+    if (!a.date) return 1;
+    if (!b.date) return -1;
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
   });
 }
 
