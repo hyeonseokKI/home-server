@@ -179,6 +179,22 @@ body {
 
 
 /* ============================= */
+/* PORTFOLIO FULLSCREEN MODE */
+/* ============================= */
+@layer utilities {
+  body.portfolio-fullscreen header,
+  body.portfolio-fullscreen footer {
+    display: none !important;
+  }
+
+  body.portfolio-fullscreen .portfolio-slideshow-container {
+    top: 0 !important;
+    height: 100vh !important;
+    padding-bottom: 1rem !important;
+  }
+}
+
+/* ============================= */
 /* DEBUG OUTLINE (TAILWIND SAFE) */
 /* ============================= */
 @layer utilities {
