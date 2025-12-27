@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion, useAnimationControls } from "framer-motion";
 import ThemeToggle from "./theme-toggle";
 import { siteConfig } from "@/config/site";
 
@@ -91,7 +92,7 @@ export default function Nav() {
 
           {/* Menu (ThemeToggle ❌) */}
           <nav className="flex-1 flex flex-col items-center justify-center gap-6 text-white text-lg font-medium">
-            <NavLinks onClick={() => setOpen(false)} />
+            <NavLinks onClick={() => setOpen(false)} isMobile={true} />
           </nav>
         </div>
       )}
@@ -99,14 +100,109 @@ export default function Nav() {
   );
 }
 
-function NavLinks({ onClick }: { onClick?: () => void }) {
+const hidden = { opacity: 0, y: -20 };
+const visible = { opacity: 1, y: 0 };
+
+function NavLinks({ onClick, isMobile = false }: { onClick?: () => void; isMobile?: boolean }) {
+  const projectButton = useAnimationControls();
+  const portfolioButton = useAnimationControls();
+  const blogButton = useAnimationControls();
+
+  useEffect(() => {
+    const run = async () => {
+      await projectButton.start({
+        ...visible,
+        transition: { duration: 0.5 },
+      });
+      await portfolioButton.start({
+        ...visible,
+        transition: { duration: 0.5 },
+      });
+      await blogButton.start({
+        ...visible,
+        transition: { duration: 0.5 },
+      });
+    };
+
+    run();
+  }, [projectButton, portfolioButton, blogButton]);
+
+  const linkClassName = isMobile
+    ? "relative px-6 py-3 text-lg font-medium text-white block z-10 whitespace-nowrap"
+    : "relative px-4 py-2 text-base font-medium text-foreground block z-10 whitespace-nowrap";
+
   return (
     <>
-      <Link href="/" onClick={onClick}>Home</Link>
-      <Link href="/projects" onClick={onClick}>Project</Link>
-      <Link href="/portfolio" onClick={onClick}>Portfolio</Link>
-      <span className="hidden md:inline text-gray-400">|</span>
-      <Link href="/blog" onClick={onClick}>Blog</Link>
+      <motion.div
+        initial={hidden}
+        animate={projectButton}
+        className="relative overflow-hidden"
+        whileHover="hover"
+        whileTap="hover"
+      >
+        <motion.div
+          className="absolute inset-0 bg-[#388d95]"
+          initial={{ scaleX: 0 }}
+          variants={{
+            hover: { scaleX: 1 },
+          }}
+          style={{ transformOrigin: "left" }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        />
+        <Link href="/projects" onClick={onClick} className={linkClassName}>
+          Project
+        </Link>
+      </motion.div>
+
+      <motion.div
+        initial={hidden}
+        animate={portfolioButton}
+        className="relative overflow-hidden"
+        whileHover="hover"
+        whileTap="hover"
+      >
+        <motion.div
+          className="absolute inset-0 bg-[#388d95]"
+          initial={{ scaleX: 0 }}
+          variants={{
+            hover: { scaleX: 1 },
+          }}
+          style={{ transformOrigin: "left" }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        />
+        <Link href="/portfolio" onClick={onClick} className={linkClassName}>
+          Portfolio
+        </Link>
+      </motion.div>
+
+      <motion.span
+        className="hidden md:inline text-gray-400"
+        initial={hidden}
+        animate={blogButton}
+      >
+        |
+      </motion.span>
+
+      <motion.div
+        initial={hidden}
+        animate={blogButton}
+        className="relative overflow-hidden"
+        whileHover="hover"
+        whileTap="hover"
+      >
+        <motion.div
+          className="absolute inset-0 bg-[#388d95]"
+          initial={{ scaleX: 0 }}
+          variants={{
+            hover: { scaleX: 1 },
+          }}
+          style={{ transformOrigin: "left" }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        />
+        <Link href="/blog" onClick={onClick} className={linkClassName}>
+          Blog
+        </Link>
+      </motion.div>
     </>
   );
 }
