@@ -21,19 +21,23 @@ export default function BlogCard({
   return (
     <Link
       href={`/blog/${slug}`}
-      className="group rounded-xl border bg-card p-4 transition hover:shadow-lg flex flex-col md:flex-row lg:flex-col gap-4"
+      className="group rounded-xl border bg-card p-4 transition hover:shadow-lg flex flex-row lg:flex-col gap-4"
     >
-      {/* 큰 화면(lg): 이미지 위, 중간 화면(md): 좌측, 작은 화면(sm 이하): 숨김 */}
-      {thumbnail && (
-        <div className="relative w-full md:w-32 lg:w-full aspect-video md:aspect-square lg:aspect-video overflow-hidden rounded-lg flex-shrink-0 hidden md:block">
+      {/* 큰 화면(lg): 이미지 위, 작은/중간 화면: 좌측 */}
+      <div className="relative w-32 lg:w-full aspect-square lg:aspect-video overflow-hidden rounded-lg flex-shrink-0 bg-muted">
+        {thumbnail ? (
           <Image
             src={thumbnail}
             alt={title}
             fill
             className="object-contain transition group-hover:scale-105"
           />
-        </div>
-      )}
+        ) : (
+          <div className="w-full h-full bg-muted flex items-center justify-center">
+            <span className="text-muted-foreground text-xs">No Image</span>
+          </div>
+        )}
+      </div>
 
       {/* 콘텐츠 영역 */}
       <div className="flex-1 flex flex-col min-w-0">

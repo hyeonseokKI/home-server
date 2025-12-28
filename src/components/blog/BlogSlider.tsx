@@ -131,7 +131,7 @@ export default function BlogSlider({
               src={currentPost.thumbnail}
               alt={currentPost.title}
               fill
-              className="object-contain"
+              className="object-cover"
               priority={currentSlide === 0}
             />
           )}
