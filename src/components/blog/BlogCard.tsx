@@ -30,7 +30,7 @@ export default function BlogCard({
             src={thumbnail}
             alt={title}
             fill
-            className="object-cover transition group-hover:scale-105"
+            className="object-contain transition group-hover:scale-105"
           />
         </div>
       )}
