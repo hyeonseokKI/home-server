@@ -4,7 +4,12 @@
 import { useDebugOutline } from "./debug-provider";
 
 export default function DebugFloatingButton() {
-  const { debug, toggle } = useDebugOutline();
+  const { debug, toggle, showDebugButton } = useDebugOutline();
+
+  // 버튼이 표시되지 않으면 렌더링하지 않음
+  if (!showDebugButton) {
+    return null;
+  }
 
   return (
     <button

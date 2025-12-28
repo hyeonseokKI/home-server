@@ -7,12 +7,15 @@ type DebugContextValue = {
   debug: boolean;
   toggle: () => void;
   setDebug: (v: boolean) => void;
+  showDebugButton: boolean;
+  setShowDebugButton: (v: boolean) => void;
 };
 
 const DebugContext = createContext<DebugContextValue | null>(null);
 
 export function DebugProvider({ children }: { children: React.ReactNode }) {
   const [debug, setDebug] = useState(false);
+  const [showDebugButton, setShowDebugButton] = useState(false);
 
   // 최초 1회: localStorage에서 로드
   useEffect(() => {
@@ -35,13 +38,29 @@ export function DebugProvider({ children }: { children: React.ReactNode }) {
     }
   }, [debug]);
 
+  // window 객체에 디버그 버튼 표시 함수 노출
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      (window as any).showDebug = () => {
+        setShowDebugButton(true);
+        console.log("디버그 버튼이 표시되었습니다.");
+      };
+      (window as any).hideDebug = () => {
+        setShowDebugButton(false);
+        console.log("디버그 버튼이 숨겨졌습니다.");
+      };
+    }
+  }, []);
+
   const value = useMemo(
     () => ({
       debug,
       toggle: () => setDebug((v) => !v),
       setDebug,
+      showDebugButton,
+      setShowDebugButton,
     }),
-    [debug]
+    [debug, showDebugButton]
   );
 
   return <DebugContext.Provider value={value}>{children}</DebugContext.Provider>;
