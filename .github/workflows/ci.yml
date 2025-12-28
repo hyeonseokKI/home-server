@@ -45,5 +45,5 @@ jobs:
       # 🔥 여기서 서버 배포 트리거
       - name: Trigger Server Deploy
         run: |
-          curl -X POST https://gustjr5166.duckdns.org/webhook \
+          curl -X POST ${{ secrets.WEBHOOK_URL_SECRET }} \
             -H "X-Deploy-Token: ${{ secrets.DEPLOY_WEBHOOK_SECRET }}"
