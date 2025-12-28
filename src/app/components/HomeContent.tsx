@@ -57,7 +57,9 @@ export default function HomeContent({ images }: HomeContentProps) {
           min-h-screen
           lg:min-h-screen
           items-center
-          justify-center
+          justify-start
+          pt-50
+          lg:pt-12
           relative
         "
       >
