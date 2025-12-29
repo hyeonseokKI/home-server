@@ -8,7 +8,7 @@ import MailIcon from "@/components/icons/MailIcon";
 
 export default function Footer() {
   return (
-    <footer className="w-full text-gray-400">
+    <footer className="w-full text-muted-foreground">
       {/* 상단 정보 영역 */}
       <div className="w-full px-4 md:px-8 py-3">
         <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center ">
@@ -17,14 +17,14 @@ export default function Footer() {
           {/* 1열: 텍스트 정보 */}
           <div className="text-sm">
             {/* 1행: 서비스명 */}
-            <p className="font-semibold text-gray-200">
+            <p className="font-semibold text-foreground">
               {siteConfig.name}
             </p>
 
             {/* 2행: Writer | Email */}
             <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
               <span>Writer :  {siteConfig.author} </span>
-              <span className="text-gray-600">|</span>
+              <span className="text-muted-foreground">|</span>
               <a 
                 href={`mailto:${siteConfig.email}`}
                 className="hover:text-pink-600 transition-colors"
@@ -35,7 +35,7 @@ export default function Footer() {
             </div>
 
             {/* 3행: Copyright */}
-            <p className="mt-2 text-gray-500">
+            <p className="mt-2 text-muted-foreground">
               © {new Date().getFullYear()} KHS. All rights reserved.
             </p>
           </div>

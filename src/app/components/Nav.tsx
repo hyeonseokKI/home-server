@@ -128,8 +128,8 @@ function NavLinks({ onClick, isMobile = false }: { onClick?: () => void; isMobil
   }, [projectButton, portfolioButton, blogButton]);
 
   const linkClassName = isMobile
-    ? "relative px-6 py-3 text-lg font-medium text-white block z-10 whitespace-nowrap"
-    : "relative px-4 py-2 text-base font-medium text-foreground block z-10 whitespace-nowrap";
+    ? "relative px-6 py-3 text-lg font-bold text-white block z-10 whitespace-nowrap"
+    : "relative px-4 py-2 text-base font-bold text-foreground block z-10 whitespace-nowrap";
 
   return (
     <>

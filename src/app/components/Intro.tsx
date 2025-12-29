@@ -88,7 +88,7 @@ export default function Intro() {
           <Link
             ref={projectRef}
             href="/projects"
-            className="relative px-8 py-4 text-xl font-bold text-gray-300 block z-10 text-center whitespace-nowrap"
+            className="relative px-8 py-4 text-xl font-bold text-foreground block z-10 text-center whitespace-nowrap"
           >
             Project
           </Link>
@@ -116,7 +116,7 @@ export default function Intro() {
           <Link
             ref={portfolioRef}
             href="/portfolio"
-            className="relative px-8 py-4 text-xl font-bold text-gray-300 block z-10 text-center whitespace-nowrap"
+            className="relative px-8 py-4 text-xl font-bold text-foreground block z-10 text-center whitespace-nowrap"
           >
             Portfolio
           </Link>
@@ -150,7 +150,7 @@ export default function Intro() {
           <Link
             ref={blogRef}
             href="/blog"
-            className="relative px-8 py-4 text-xl font-bold text-gray-300 block z-10 text-center whitespace-nowrap"
+            className="relative px-8 py-4 text-xl font-bold text-foreground block z-10 text-center whitespace-nowrap"
           >
             Blog
           </Link>
